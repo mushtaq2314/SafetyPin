@@ -18,4 +18,5 @@ path("store.html",views.store,name="store"),
 path("help.html",views.help,name="help"),
 path("passwords.html",views.passwords,name="passwords"),
 path("wallet.html",views.wallet,name="wallet"),
+path("error.html",views.error,name="error"),
 ]

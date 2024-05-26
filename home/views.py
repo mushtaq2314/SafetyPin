@@ -221,7 +221,7 @@ def signup(request):
             return render(request,'signup.html',{'message':'Email already exists'})
         else:    
             print(name,email,password)
-            signup = SignUP(name= name,email = email,password=encrypt(encpwd.encode(),password.encode()),image = "C:/Users/DELL/Desktop/Django/first/images/img19_1920x1200.jpg")    
+            signup = SignUP(name= name,email = email,password=encrypt(encpwd.encode(),password.encode()),image = "E:/SafetyPin/images/img19_1920x1200.jpg")    
             signup.save()
             context = {'name':name}
             return render(request,'login.html',context)
@@ -234,6 +234,8 @@ def forgot(request):
 
 def help(request):
     return render(request,'help.html')
+def error(request):
+    return render(request,'error.html')
 
 def store(request):
     global lmail
@@ -242,7 +244,7 @@ def store(request):
     modify = ast.literal_eval(decrypt(encpwd.encode(),str(data[-1])).decode())
     
     # print(modify)
-    x = Image.open("C:/Users/DELL/Desktop/Django/first/images/img19_1920x1200.jpg")
+    x = Image.open("E:/SafetyPin/images/img19_1920x1200.jpg")
     y = x.copy()
     if (request.method=='POST'):
         l=[ request.POST.get('1'),
