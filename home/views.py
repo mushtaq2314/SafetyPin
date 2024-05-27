@@ -9,7 +9,8 @@ import os
 import sys
 import os.path
 from os import path
-
+from .decorators import handle_errors
+@handle_errors
 def convertToRGB(img):
 	try:
 		rgba_image = img
@@ -20,12 +21,12 @@ def convertToRGB(img):
 	except Exception as e:
 		print("[red]Couldn't convert image to RGB [/red]- %s"%e)
 
-
+@handle_errors
 def getPixelCount(img):
 	width, height = Image.open(img).size
 	return width*height
 
-
+@handle_errors
 def encodeImage(image,message,filename):
 		try:
 			width, height = image.size
@@ -99,7 +100,7 @@ def encodeImage(image,message,filename):
 			sys.exit(0)
 
 
-
+@handle_errors
 def decodeImage(image):
 		try:
 			pix = image.getdata()
@@ -148,6 +149,7 @@ from Crypto import Random
 import base64
 global encpwd
 encpwd="qwerty"
+@handle_errors
 def encrypt(key, source, encode=True):
     key = SHA256.new(key).digest()  # use SHA-256 over our key to get a proper-sized AES key
     IV = Random.new().read(AES.block_size)  # generate Initialization vector
@@ -157,7 +159,7 @@ def encrypt(key, source, encode=True):
     data = IV + encryptor.encrypt(source)  # store the IV at the beginning and encrypt
     return base64.b64encode(data).decode() if encode else data
 
-
+@handle_errors
 def decrypt(key, source, decode=True):
     if decode:
         source = base64.b64decode(source.encode())
@@ -173,12 +175,12 @@ def decrypt(key, source, decode=True):
 
 
 # Create your views here.
-
+@handle_errors
 def index(request):
     
     return render(request,'index.html')
 
-
+@handle_errors
 def Login(request):
     if request.method == "POST":
         global lmail
@@ -207,9 +209,10 @@ def Login(request):
 
     return render(request,'login.html')
 
+@handle_errors
 def generate(request):
     return render(request,'generate.html')
-
+@handle_errors
 def signup(request):
     allmails = list(SignUP.objects.values_list('email',flat=True))
     if request.method == "POST":
@@ -230,14 +233,18 @@ def signup(request):
 
 
 ##################
+@handle_errors
 def forgot(request):
     return render(request,'forgot.html')
 
+@handle_errors
 def help(request):
     return render(request,'help.html')
+
+@handle_errors
 def error(request):
     return render(request,'error.html')
-
+@handle_errors
 def store(request):
     global lmail
     data = list(list(SignUP.objects.filter(email=lmail).values_list())[0])
@@ -274,8 +281,12 @@ def store(request):
         data = list(list(SignUP.objects.filter(email=lmail).values_list())[0])
         context={"passwords":ast.literal_eval(decrypt(encpwd.encode(),str(data[-1])).decode())}
     return render(request,'store.html',context)
+
+@handle_errors
 def wallet(request):
     return render(request,'wallet.html') 
+
+@handle_errors
 def passwords(request):
     global lmail
     data = list(list(SignUP.objects.filter(email=lmail).values_list())[0])
@@ -288,9 +299,11 @@ def passwords(request):
     print(type(context))
     return render(request,'passwords.html',context)        
 
+@handle_errors
 def contact(request):
     return render(request,'contact.html')
 
+@handle_errors
 def profile(request):
     try:
         global lmail
@@ -316,11 +329,11 @@ def profile(request):
         print(data)
         return render(request,'profile.html',context)
          
-
+@handle_errors
 def home(request):
     global nm
     context = {'name':nm}
     return render(request,'home.html',context)
-
+@handle_errors
 def services(request):
     return render(request,'services.html')
