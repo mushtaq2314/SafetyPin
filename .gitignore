@@ -1,1 +1,4 @@
 /myenv
+/__pycache__/
+/home/__pycache__/
+/SafetyPin/__pycache__/
