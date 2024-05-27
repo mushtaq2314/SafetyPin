@@ -252,8 +252,8 @@ def store(request):
     modify = ast.literal_eval(decrypt(encpwd.encode(),str(data[-1])).decode())
     
     # print(modify)
-    # x = Image.open("E:/SafetyPin/images/img19_1920x1200.jpg")
-    x = Image.open("/home/ubuntu/safetypin/images/img19_1920x1200.jpg")
+    x = Image.open("E:/SafetyPin/images/img19_1920x1200.jpg")
+    # x = Image.open("/home/ubuntu/safetypin/images/img19_1920x1200.jpg")
     y = x.copy()
     if (request.method=='POST'):
         l=[ request.POST.get('1'),
