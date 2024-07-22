@@ -35,7 +35,7 @@ SafetyPin is a secure password manager web application built with Django. It use
    ```sh
    pip install -r requirements.txt
    ```
-4. Run the application
+## Run the application
    ```sh
    python manage.py runserver
    ```
