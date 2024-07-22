@@ -26,3 +26,16 @@ SafetyPin is a secure password manager web application built with Django. It use
    ```sh
    git clone https://github.com/mushtaq2314/SafetyPin.git
    cd SafetyPin
+   ```
+2. Create a virtual environment (Recommended)
+   ```sh
+   python -m venv environment-name
+   ```
+3. Install required libraries
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. Run the application
+   ```sh
+   python manage.py runserver
+   ```
